@@ -13,72 +13,91 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar : AppBar(
           backgroundColor: Colors.white,
-          title: Text("Test")
+          title: Text("BS IT")
         ),
-                body: Row(
-          children: [
-            // First Column
-            Expanded(
-              flex: 1,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: Colors.red,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      color: Colors.pink,
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      color: Colors.green,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+        body: Container(
+          width: double.infinity,   
+          height: double.infinity,
 
-            // Second Column
-            Expanded(
-              flex: 1,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: Colors.blue,
-                    ),
+
+decoration: BoxDecoration(
+  gradient: LinearGradient(
+    colors: [Colors.blue, Colors.white]
+  )
+),
+        
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text("Welcome back",style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 40,
+              )),
+              SizedBox(
+                height:20,
                   ),
-                  Expanded(
-                    child: Container(
-                      color: Colors.black,
+                  TextField(
+             decoration: InputDecoration(
+             border: OutlineInputBorder(),
+              prefixIcon: Icon(Icons.email),
+              filled: true,
+              fillColor: Colors.white,
+                      hintText: "Enter your email",
+                      
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      color: Colors.orange,
+                  SizedBox(
+                height:20,
+                  ), 
+                   TextField(
+                    obscureText: true,
+             decoration: InputDecoration(
+             border: OutlineInputBorder(),
+              prefixIcon: Icon(Icons.password),
+          
+              filled: true,
+              fillColor: Colors.white,
+                      hintText: "Enter your Password",
+                      
+                      ),
                     ),
+                    SizedBox(
+                height:20,
                   ),
-                                    Expanded(
-                    child: Container(
-                      color: Colors.tealAccent,
+                  Container(
+                    width: double.infinity,
+                    height:50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      
+                      gradient: LinearGradient(
+                        colors: [Colors.transparent, Colors.transparent]
+                      
                     ),
-                  ),
-                ],
-              ),
+                    ),
+                    child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                    ),
+                    
+                      onPressed: () {},
+                       child: Text("Login", style: TextStyle(
+                        color: Colors.black,
+                      ),
+                      ),
+                      ),
+                      ),
+                  
+            ]   
+                ),
+        )
+              
             ),
-          ],
+          
         ),
-      ),
-    );
+      );
   }
 }
-
-    
-
-  
-  
-  
