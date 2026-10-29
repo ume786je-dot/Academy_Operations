@@ -4,42 +4,81 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  int counter=0;
-
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text("BS IT"),
-          backgroundColor: Colors.red,
+        appBar : AppBar(
+          backgroundColor: Colors.white,
+          title: Text("Test")
         ),
-        body: Column(
+                body: Row(
           children: [
-            Text("Counter"),
-             Text("$counter"),
-
-          ],
-
-            
-                ),
-                floatingActionButton: FloatingActionButton(onPressed: (){
-setState(() {
-  counter++;
-});
-                }, child: Icon(Icons.plus_one)
-                ),
+            // First Column
+            Expanded(
+              flex: 1,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: Colors.red,
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      color: Colors.pink,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      color: Colors.green,
+                    ),
+                  ),
+                ],
               ),
-            );
-  
+            ),
+
+            // Second Column
+            Expanded(
+              flex: 1,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: Colors.blue,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      color: Colors.black,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      color: Colors.orange,
+                    ),
+                  ),
+                                    Expanded(
+                    child: Container(
+                      color: Colors.tealAccent,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
+
+    
+
+  
+  
+  
