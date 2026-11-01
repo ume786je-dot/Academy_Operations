@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class ChatHistory extends StatelessWidget {
@@ -17,7 +16,6 @@ class ChatHistory extends StatelessWidget {
     "How are you?",
     "I am fine",
     "What are you up to?",
-    
     "Nothing",
     "Okay",
   ];
@@ -82,7 +80,3 @@ class ChatHistory extends StatelessWidget {
     );
   }
 }
-
-
-
-
