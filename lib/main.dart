@@ -1,118 +1,146 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_application_2/chat.dart';
-
-
+import 'package:flutter_application_2/ChatHistory.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  bool showPassword = true;
-
-  final passwordController = TextEditingController();
-
-  List<String> students = [
-    "Angry Birds",
-    "Um E Habiba",
-    "Sneha",
-    "Eman Fatima",
-    "Iman Fatima",
-    "Rabia Islam",
-    "Areeba Shahbaz",
-  ];
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Whatsapp"),
-          backgroundColor: Colors.greenAccent,
-        ),
-body: Column(
-  children: [
-    Padding(
-      padding: const EdgeInsets.all(6.0),
-      child: TextField(
-        decoration: InputDecoration(
-          prefixIcon: Icon(Icons.search),
-          hintText: 'Search Here',
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(100.0)
-      
-          )
-        )
-      ),
-    ),
-  Row(
-    children: [
-      TextButton(onPressed:(){}, child: Text("unread")),
-      TextButton(onPressed:(){}, child: Text("All")),
-      TextButton(onPressed:(){}, child: Text("Favotrites")),
-      TextButton(onPressed:(){}, child: Text("Groups")),
-      TextButton(onPressed:(){}, child: Text("Communities")),
+      debugShowCheckedModeBanner: false,
+      home: LoginScreen(),
+    );
+  }
+}
 
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
 
+  final email = TextEditingController();
+  final password = TextEditingController();
 
+  final String correctEmail = "ume786@gmail.com";
+  final String correctPassword = "12345678";
 
-    ],
-  ),
-     Expanded(
-       child: ListView.builder(
-        itemCount: students.length,
-          itemBuilder: (context, index) {
-           return Column(
-             children: [
-              ListTile(
-                onTap: ()
-                {
-                  print(index);
-                  Get.to(ChatHistory(name: students[index] , n: index
-                  )
-               );
-            },
-      title: Text(students[index]),
-       subtitle: const Text("Hello How are you"),
-         trailing: Column(
-           children: [
-            const Text("10:00 am"),
-              CircleAvatar(
-                radius:10,
-                backgroundColor: Colors.green,
-                  child: Text("1",
-                    style: TextStyle(
-                     color: Colors.white,
-                     fontSize: 12,
-    
-            ))
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.blue,
+              Colors.white,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
-        ],
-      ),
-    ),
-    Divider(
-      height:1,
-      thickness: 0.5,
-      color:Colors.grey,
-                      )
-                    ],
-                  );
-                },
-              ),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  "Login Here",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                TextField(
+                  controller: email,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    hintText: "Email",
+                    prefixIcon: const Icon(Icons.person),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 10),
+
+                TextField(
+                  controller: password,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    hintText: "Password",
+                    prefixIcon: const Icon(Icons.password),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                SizedBox(
+                  height: 50,
+                  width: double.infinity,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      gradient: const LinearGradient(
+                        colors: [
+                          Colors.blue,
+                          Colors.yellow,
+                        ],
+                      ),
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (email.text.trim() == correctEmail &&
+                            password.text == correctPassword) {
+                          Get.to(() => ChatHistory());
+                        } else {
+                          Get.snackbar(
+                            "Login Failed",
+                            "Wrong Login Details",
+                            snackPosition: SnackPosition.BOTTOM,
+                          );
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
-        floatingActionButton: FloatingActionButton(onPressed: (){}, child:Icon(Icons.chat)),
-        ),
-      );
-    
+      ),
+    );
   }
 }
